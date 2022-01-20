@@ -4,12 +4,29 @@
  [
   {description, "Query language libraries for Riak"},
   {vsn, git},
-  {applications, [
-                  kernel,
-                  stdlib,
-                  sasl
-                 ]},
+  {applications,
+   [
+    kernel,
+    stdlib,
+    sasl
+   ]},
   {registered, []},
+  {modules,
+   [
+    riak_ql_cmd,
+    riak_ql_component,
+    riak_ql_ddl,
+    riak_ql_ddl_compiler,
+    riak_ql_ddl_util,
+    riak_ql_describe,
+    riak_ql_inverse_distrib_fns,
+    riak_ql_lexer,
+    riak_ql_parser,
+    riak_ql_quanta,
+    riak_ql_show_create_table,
+    riak_ql_to_string,
+    riak_ql_window_agg_fns
+   ]},
   {env, [
         ]}
  ]}.

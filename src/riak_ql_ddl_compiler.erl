@@ -49,7 +49,7 @@
 -module(riak_ql_ddl_compiler).
 
 -include("riak_ql_ddl.hrl").
--include_lib("merl/include/merl.hrl").
+-include_lib("syntax_tools/include/merl.hrl").
 
 -export([
          compile/1,

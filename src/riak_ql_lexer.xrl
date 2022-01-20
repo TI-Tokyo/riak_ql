@@ -178,7 +178,7 @@ Rules.
 
 Erlang code.
 
--compile([export_all]).
+-export([get_tokens/1]).
 
 get_tokens(X) ->
     Toks = lex(X),

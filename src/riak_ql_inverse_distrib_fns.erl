@@ -142,10 +142,3 @@ largest_bin_({LargestV, LargestC, CurrentV, CurrentC}, ValuesAtF, Pos, RowsTotal
             largest_bin_({LargestV, LargestC,  %% keep largest, reset current
                           V, 1}, ValuesAtF, Pos + 1, RowsTotal)
     end.
-
-ceil(X) ->
-    T = trunc(X),
-    case X - T == 0 of
-        true -> T;
-        false -> T + 1
-    end.
