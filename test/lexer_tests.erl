@@ -223,7 +223,7 @@ brackets_test_() ->
 unicode_character_literal_test_() ->
     Got = riak_ql_lexer:get_tokens("'πίτσα пицца ピザ 比萨'"),
     Expected = [
-                {character_literal, <<"πίτσα пицца ピザ 比萨">>}
+                {character_literal, unicode:characters_to_binary("πίτσα пицца ピザ 比萨")}
                ],
     ?_assertEqual(Expected, Got).
 

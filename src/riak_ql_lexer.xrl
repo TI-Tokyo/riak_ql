@@ -223,7 +223,7 @@ clean_up_literal(Literal) ->
         _ -> Literal
     end,
     DeDupedInternalQuotes = dedup_quotes(Literal1),
-    list_to_binary(DeDupedInternalQuotes).
+    unicode:characters_to_binary(DeDupedInternalQuotes).
 
 %% dedup(licate) quotes, using pattern matching to reduce to O(n)
 dedup_quotes(S) ->
