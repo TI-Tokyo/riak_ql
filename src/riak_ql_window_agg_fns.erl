@@ -40,8 +40,9 @@
 supported_functions() ->
     ['COUNT', 'SUM', 'AVG','MEAN', 'MIN', 'MAX', 'STDDEV', 'STDDEV_POP', 'STDDEV_SAMP'].
 
--spec fn_type_signature(aggregate_function(), Args::[riak_ql_ddl:external_field_type()]) ->
-        riak_ql_ddl:external_field_type().
+-spec fn_type_signature(aggregate_function(), [riak_ql_ddl:external_field_type()]) ->
+          riak_ql_ddl:external_field_type() |
+          {error, {argument_type_mismatch, aggregate_function(), [riak_ql_ddl:external_field_type()]}}.
 fn_type_signature('AVG', [double]) -> double;
 fn_type_signature('AVG', [sint64]) -> double;
 fn_type_signature('AVG', [timestamp]) -> double;
