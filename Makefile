@@ -1,5 +1,5 @@
-.PHONY: compile rel cover test dialyzer eqc
-REBAR=./rebar3
+.PHONY: compile cover test dialyzer
+REBAR ?= ./rebar3
 
 compile:
 	$(REBAR) compile
@@ -12,10 +12,6 @@ cover: test
 
 test: compile
 	$(REBAR) as test do eunit
-
-eqc:
-	$(REBAR) eqc
-
 
 dialyzer:
 	$(REBAR) dialyzer
