@@ -204,7 +204,7 @@ lk_to_pk(LKVals, Mod, ?DDL{local_key = #key_v1{ast = LKAst},
                            partition_key = PK}) ->
     KeyFields = [F || ?SQL_PARAM{name = [F]} <- LKAst],
     case {length(LKVals), length(KeyFields)} of
-        {_N, _N} ->
+        {N, N} ->
             LKPairs = lists:zip(KeyFields, LKVals),
             PKVals = [V || {_Type, V} <- make_key(Mod, PK, LKPairs)],
             {ok, PKVals};
