@@ -3,12 +3,12 @@
 %% riak_ql_quanta.erl - a library for quantising time for Time Series
 %%
 %% @doc This module serves to generate time quanta on multi - (day, hour, minute,
-%% second) boundaries. The quantum are based on an origin time of Jan 1, 1970 
+%% second) boundaries. The quantum are based on an origin time of Jan 1, 1970
 %% 00:00:00 (Unix Epoch).
-%% The function <em>quantum/3</em> takes a time in milliseconds to bucketize, 
+%% The function <em>quantum/3</em> takes a time in milliseconds to bucketize,
 %% a size of the quantum, and the units of said quantum.
 %% For instance, the following call would create buckets for timestamps on 15
-%% minute boundaries: <em>quantum(Time, 15, m)</em>. The quantum time is returned in 
+%% minute boundaries: <em>quantum(Time, 15, m)</em>. The quantum time is returned in
 %% milliseconds since the Unix epoch.
 %% The function <em>quanta/4</em> takes 2 times in milliseconds and size of the quantum
 %% and the of units of said quantum and returns a list of quantum boundaries that span the time
@@ -54,13 +54,11 @@
 -define(DAYS_FROM_0_TO_1970, 719528).
 
 -ifdef(TEST).
--ifdef(EQC).
--include_lib("eqc/include/eqc.hrl").
+-include_lib("proper/include/proper.hrl").
 -define(QC_OUT(P),
-        eqc:on_output(fun(Str, Args) ->
+        proper:on_output(fun(Str, Args) ->
                               io:format(user, Str, Args) end, P)).
 -compile(export_all).
--endif.
 -endif.
 %% @clear
 %% @end
@@ -72,7 +70,7 @@
 -spec quanta(time_ms(), time_ms(), non_neg_integer(), time_unit()) -> {integer(), [integer()]} | {error, any()}.
 quanta(StartTime, EndTime, QuantaSize, Unit) when StartTime > EndTime ->
     %% cheap trick to handle descending timestamps, reverse the arguments
-    quanta(EndTime, StartTime, QuantaSize, Unit); 
+    quanta(EndTime, StartTime, QuantaSize, Unit);
 quanta(StartTime, EndTime, QuantaSize, Unit) ->
     Start = quantum(StartTime, QuantaSize, Unit),
     case Start of
@@ -227,8 +225,8 @@ split_quanta_test() ->
 prop_quantum_bounded_test() ->
     ?assertEqual(
        true,
-       eqc:quickcheck(
-         eqc:numtests(1000, prop_quantum_bounded()))
+       proper:quickcheck(
+         proper:numtests(1000, prop_quantum_bounded()))
       ).
 
 %% Ensure that Quantas are always bounded, meaning that any time is no more
@@ -265,7 +263,7 @@ time_gen() ->
 %% We expect quanta to be bigger than their cardinality
 %% A quantum of 100 minutes is perfectly reasonable
 quantum_gen() ->
-    oneof([ 
+    oneof([
             {choose(1, 1000), d},
             {choose(1, 1000), h},
             {choose(1, 1000), m},
