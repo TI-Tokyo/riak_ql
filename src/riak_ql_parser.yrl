@@ -496,6 +496,7 @@ AlterTableStatement ->
 
 Erlang code.
 
+-dialyzer(no_return).
 -record(outputs,
         {
           type :: create | describe | explain | insert | select | delete,
