@@ -124,8 +124,8 @@ Rules.
 {TABLES} : {token, {tables, list_to_binary(TokenChars)}}.
 {TIMESTAMP} : {token, {timestamp, list_to_binary(TokenChars)}}.
 {TRUE} : {token, {true, list_to_binary(TokenChars)}}.
-{VALUES} : {token, {values, list_to_binary(TokenChars)}}.
-{VARCHAR} : {token, {varchar, list_to_binary(TokenChars)}}.
+{VALUES} : {token, {values, unicode:characters_to_nfc_binary(TokenChars)}}.
+{VARCHAR} : {token, {varchar, unicode:characters_to_nfc_binary(TokenChars)}}.
 {WHERE} : {token, {where, list_to_binary(TokenChars)}}.
 {WITH} : {token, {with, list_to_binary(TokenChars)}}.
 
